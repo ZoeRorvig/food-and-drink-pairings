@@ -2,7 +2,7 @@ var foodUrl = "https://www.themealdb.com/api.php";
 var drinkUrl = "https://www.thecocktaildb.com/api.php";
 
 var foodIngredients = document.querySelector("#food-list");
-
+var drinkIngredients = document.querySelector("#drink-list");
 document.querySelector("#randomize-button").addEventListener("click" , function() {
     var randomFoodApi = "https://www.themealdb.com/api/json/v1/1/random.php"; 
     var randomDrinkApi = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
@@ -42,8 +42,9 @@ var getType = function(meal,keyType){
        return meal[key];
     });
     var filteredIngredients = ingredients.filter(function(ingredient){
-        return ingredient.trim();
-    });
+        return ingredient;
+        
+        });
     return filteredIngredients;
 }
 
@@ -70,5 +71,19 @@ var displayItems = function(food, drink){
     }
 
     // Display Drink
+    drinkCard.children[0].src = drink.drinks[0].strDrinkThumb;
+    drinkCard.children[1].children[0].textContent = drink.drinks[0].strDrink;
 
+    drinkCard.children[3].textContent = drink.drinks[0].strInstructions;
+    var ingredients = getType(drink.drinks[0],"Ingredient");
+    var measurements = getType(drink.drinks[0],"Measure");
+    console.log(ingredients);
+    console.log(measurements)
+
+    for (var i = 0; i < ingredients.length; i++){
+        var li = document.createElement("li");
+        li.textContent = measurements[i] + " " + ingredients[i]; 
+        li.setAttribute("data-index", i); 
+        drinkIngredients.appendChild(li);
+    }
 };
