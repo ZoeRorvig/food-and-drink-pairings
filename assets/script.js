@@ -1,28 +1,74 @@
 var foodUrl = "https://www.themealdb.com/api.php";
 var drinkUrl = "https://www.thecocktaildb.com/api.php";
 
-document.querySelector("#randomize-button").addEventListener("click" , function() {
-    var randomFood = "https://www.themealdb.com/api/json/v1/1/random.php"; 
-    var randomDrink = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
+var foodIngredients = document.querySelector("#food-list");
 
-    fetch(randomFood)
+document.querySelector("#randomize-button").addEventListener("click" , function() {
+    var randomFoodApi = "https://www.themealdb.com/api/json/v1/1/random.php"; 
+    var randomDrinkApi = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
+
+    fetch(randomFoodApi)
         .then(function(response) {
             if (response.ok) {
                 response.json()
                 .then(function (data) {
                     console.log(data);
-                    //displayResults(data.results, location, format);
+                    var randomFood = data;
+                    fetch(randomDrinkApi)
+                    .then(function(response) {
+                        if (response.ok) {
+                            response.json()
+                            .then(function (data) {
+                                console.log(data);
+                                var randomDrink = data;
+                                displayItems(randomFood, randomDrink);
+                            });
+                        }
+                    });
                 });
             }
         });
 
-        fetch(randomDrink)
-        .then(function(response) {
-            if (response.ok) {
-                response.json()
-                .then(function (data) {
-                    console.log(data);
-                });
-            }
+       
+        
 });
-});
+
+var getType = function(meal,keyType){
+    var keys = Object.keys(meal);
+    var ingredientsKeys = keys.filter(function(key){
+       return key.includes(keyType);
+    });
+    var ingredients = ingredientsKeys.map(function(key){
+       return meal[key];
+    });
+    var filteredIngredients = ingredients.filter(function(ingredient){
+        return ingredient.trim();
+    });
+    return filteredIngredients;
+}
+
+var displayItems = function(food, drink){
+    var foodCard = document.querySelector(".card-food");
+    var drinkCard = document.querySelector(".card-drink");
+
+    // Display Food
+    foodCard.children[0].src = food.meals[0].strMealThumb;
+    foodCard.children[1].children[0].textContent = food.meals[0].strMeal;
+    foodCard.children[3].href = food.meals[0].strSource;
+    foodCard.children[4].href = food.meals[0].strYoutube;
+
+    var ingredients = getType(food.meals[0],"Ingredient");
+    var measurements = getType(food.meals[0],"Measure");
+    console.log(ingredients);
+    console.log(measurements)
+
+    for (var i = 0; i < ingredients.length; i++){
+        var li = document.createElement("li");
+        li.textContent = measurements[i] + " " + ingredients[i]; 
+        li.setAttribute("data-index", i); 
+        foodIngredients.appendChild(li);
+    }
+
+    // Display Drink
+
+};
