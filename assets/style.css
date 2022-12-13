@@ -24,8 +24,11 @@ form {
 }
 
 footer {
+    display: flex;
+    justify-content: center;
     margin: 10px;
-    background-color:#65aa88
+    background-color:#65aa88;
+    padding-top: 10px;
 }
 
 body {
@@ -36,6 +39,12 @@ body {
     background-color: #d8f3dc;
     padding: 4px;
     border: 3px solid gray;
+    display: none;
+    margin-bottom: 10px;
+}
+
+.card-drink{
+    margin-right: 10px
 }
 
 ul {
@@ -45,12 +54,26 @@ ul {
 
 .btn {
     background-color: #f08080;
+    border: 2px solid gray;
 }
 
+.btn:hover{
+    background-color: #f2c3c3;
+    border: 2px solid gray;
+} 
+
 a {
-    border: 3px solid gray;
+    border: 2px solid gray;
     background-color:#f08080;
     color: white;
     padding: 4px;
     margin-top: 4px;    
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+a:hover{
+    background-color: #f2c3c3;
+    border: 2px solid gray;
+    color: white;
 }

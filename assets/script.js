@@ -52,6 +52,7 @@ var getType = function (meal, keyType) {
 }
 
 var displayFoodItems = function (food) {
+    document.querySelector(".card-food").style.display = "block";
     var foodCard = document.querySelector(".card-food");
     foodIngredients.textContent = "";
 
@@ -75,12 +76,13 @@ var displayFoodItems = function (food) {
 };
 
 var displayDrinkItems = function (drink) {
+    document.querySelector(".card-drink").style.display = "block";
     var drinkCard = document.querySelector(".card-drink");
     drinkIngredients.textContent = "";
 
     // Display Drink
     drinkCard.children[0].src = drink.drinks[0].strDrinkThumb;
-    drinkCard.children[1].children[0].textContent = drink.drinks[0].strDrink;
+    drinkCard.children[1].children[0].textContent = drink.drinks[0].strDrink + " ["+ drink.drinks[0].strAlcoholic + "]";
 
     drinkCard.children[3].textContent = drink.drinks[0].strInstructions;
     var ingredients = getType(drink.drinks[0], "Ingredient");
