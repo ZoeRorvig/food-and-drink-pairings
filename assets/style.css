@@ -1,0 +1,56 @@
+img {
+    max-width: 250px;
+    padding-bottom: 10px;
+}
+
+h1 {
+    padding: 10px;
+    font-size: 50px;
+}
+
+header {
+    background-color: #2d6a4f;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+form {
+    margin-left: 10px;
+    border: 3px solid gray;
+    padding: 4px;
+    background-color:#d8f3dc;
+}
+
+footer {
+    margin: 10px;
+    background-color:#65aa88
+}
+
+body {
+    background-color:#74c69d;
+}
+
+.card-food, .card-drink {
+    background-color: #d8f3dc;
+    padding: 4px;
+    border: 3px solid gray;
+}
+
+ul {
+    list-style: none;
+    padding-bottom: 8px;
+}
+
+.btn {
+    background-color: #f08080;
+}
+
+a {
+    border: 3px solid gray;
+    background-color:#f08080;
+    color: white;
+    padding: 4px;
+    margin-top: 4px;    
+}
