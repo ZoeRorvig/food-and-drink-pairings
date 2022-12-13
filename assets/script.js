@@ -96,7 +96,7 @@ var displayDrinkItems = function (drink) {
     }
 };
 document.querySelector("#food-button").addEventListener("click", function () {
-    document.querySelector(".ingredient").children[2].textContent = "";
+    document.querySelector(".food-ingredient").children[2].textContent = "";
     userInput = document.querySelector("#food-input").value.split(' ').join('_');
     console.log(userInput);
     var foodUrl = "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + userInput;
@@ -109,7 +109,7 @@ document.querySelector("#food-button").addEventListener("click", function () {
                     .then(function (data) {
                         console.log(data);
                         if (data.meals == null){
-                            document.querySelector(".ingredient").children[2].textContent = "Oops! Please try a different ingredient!";
+                            document.querySelector(".food-ingredient").children[2].textContent = "Oops! Please try a different ingredient!";
                         } else{
                         food = Math.floor(Math.random() * data.meals.length);
                         foodName = data.meals[food].strMeal;
@@ -120,6 +120,40 @@ document.querySelector("#food-button").addEventListener("click", function () {
                                     response.json()
                                         .then(function (data) {
                                             displayFoodItems(data);
+                                        });
+                                }
+                            });
+                        }
+                    });
+            }
+        });
+});
+
+document.querySelector("#drink-button").addEventListener("click", function () {
+    document.querySelector(".drink-ingredient").children[2].textContent = "";
+    userInput = document.querySelector("#drink-input").value.split(' ').join('_');
+    console.log(userInput);
+    var drinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + userInput;
+
+
+    fetch(drinkUrl)
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
+                    .then(function (data) {
+                        console.log(data);
+                        if (data.drinks == null){
+                            document.querySelector(".drink-ingredient").children[2].textContent = "Oops! Please try a different ingredient!";
+                        } else{
+                        drink = Math.floor(Math.random() * data.drinks.length);
+                        drinkName = data.drinks[drink].strDrink;
+                        var drinkNameURL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + drinkName;
+                        fetch(drinkNameURL)
+                            .then(function (response) {
+                                if (response.ok) {
+                                    response.json()
+                                        .then(function (data) {
+                                            displayDrinkItems(data);
                                         });
                                 }
                             });
