@@ -1,5 +1,6 @@
-var foodUrl = "https://www.themealdb.com/api.php";
-var drinkUrl = "https://www.thecocktaildb.com/api.php";
+// var foodUrl = "https://www.themealdb.com/api.php";
+// var drinkUrl = "https://www.thecocktaildb.com/api.php";
+var userInput = "";
 
 var foodIngredients = document.querySelector("#food-list");
 var drinkIngredients = document.querySelector("#drink-list");
@@ -14,6 +15,7 @@ document.querySelector("#randomize-button").addEventListener("click" , function(
                 .then(function (data) {
                     console.log(data);
                     var randomFood = data;
+                    displayFoodItems(randomFood);
                     fetch(randomDrinkApi)
                     .then(function(response) {
                         if (response.ok) {
@@ -21,7 +23,7 @@ document.querySelector("#randomize-button").addEventListener("click" , function(
                             .then(function (data) {
                                 console.log(data);
                                 var randomDrink = data;
-                                displayItems(randomFood, randomDrink);
+                                displayDrinkItems(randomDrink);
                             });
                         }
                     });
@@ -48,9 +50,8 @@ var getType = function(meal,keyType){
     return filteredIngredients;
 }
 
-var displayItems = function(food, drink){
+var displayFoodItems = function(food){
     var foodCard = document.querySelector(".card-food");
-    var drinkCard = document.querySelector(".card-drink");
 
     // Display Food
     foodCard.children[0].src = food.meals[0].strMealThumb;
@@ -68,8 +69,9 @@ var displayItems = function(food, drink){
         li.textContent = measurements[i] + " " + ingredients[i]; 
         li.setAttribute("data-index", i); 
         foodIngredients.appendChild(li);
-    }
-
+    } };
+var displayDrinkItems = function (drink) {
+    var drinkCard = document.querySelector(".card-drink");
     // Display Drink
     drinkCard.children[0].src = drink.drinks[0].strDrinkThumb;
     drinkCard.children[1].children[0].textContent = drink.drinks[0].strDrink;
@@ -87,3 +89,22 @@ var displayItems = function(food, drink){
         drinkIngredients.appendChild(li);
     }
 };
+ document.querySelector("#food-button").addEventListener("click" , function() {
+    userInput = document.querySelector("#food-input").value.split(' ').join('_');
+    console.log(userInput);
+    var foodUrl = "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + userInput;
+    fetch(foodUrl)
+        .then(function(response) {
+            if (response.ok) {
+                response.json()
+                .then(function (data) {
+                    console.log(data);
+                    var foodInput = data;
+                    console.log(foodInput);
+                    displayFoodItems(foodInput);
+ }
+ );
+}
+});
+}
+);
