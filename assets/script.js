@@ -2,6 +2,9 @@
 // var drinkUrl = "https://www.thecocktaildb.com/api.php";
 var userInput = "";
 var foodName = "";
+var savedFood = [];
+var savedDrink = [];
+var clearBtnEl = document.querySelector("#clearBtn");
 
 var foodIngredients = document.querySelector("#food-list");
 var drinkIngredients = document.querySelector("#drink-list");
@@ -164,3 +167,53 @@ document.querySelector("#drink-button").addEventListener("click", function () {
             }
         });
 });
+
+document.querySelector("#foodFav").addEventListener("click" , function () {
+   var food = document.getElementById("foodCardTitle").textContent;
+
+    savedFood.push(food);
+    console.log(savedFood);
+   localStorage.setItem('favorite-food', JSON.stringify(savedFood));
+    displayFavorites();
+
+});
+
+document.querySelector("#drinkFav").addEventListener("click" , function () {
+    var drink = document.getElementById("drinkCardTitle").textContent;
+    console.log(drink);
+    savedDrink.push(drink);
+    localStorage.setItem('favorite-drink', JSON.stringify(savedDrink));
+    displayFavorites();
+});
+
+
+var displayFavorites = function () {
+    document.getElementById("foodList").innerHTML = null;
+    savedFood = JSON.parse(localStorage.getItem('favorite-food')) || [];
+  console.log(savedFood);
+
+  for (i = 0; i < savedFood.length; i++){
+
+   var li = document.createElement('li');
+   li.textContent = savedFood[i];
+   document.getElementById("foodList").appendChild(li);
+  };
+
+  document.getElementById("drinkList").innerHTML = null;
+    savedDrink = JSON.parse(localStorage.getItem('favorite-drink')) || [];
+  console.log(savedFood);
+
+  for (i = 0; i < savedDrink.length; i++){
+
+   var li = document.createElement('li');
+   li.textContent = savedDrink[i];
+   document.getElementById("drinkList").appendChild(li);
+  };
+};
+
+clearBtnEl.addEventListener("click", function(){
+    localStorage.clear();
+    location.reload();
+});
+
+displayFavorites();
