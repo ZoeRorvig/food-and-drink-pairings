@@ -1,6 +1,8 @@
 img {
-    max-width: 250px;
-    padding-bottom: 10px;
+    width: 100%;
+    padding: 5px;
+    border: 2px solid lightgray;
+    margin-bottom: 10px;
 }
 
 h1 {
@@ -14,10 +16,12 @@ header {
     justify-content: center;
     margin-bottom: 20px;
     color: white;
+    border-bottom: 2px solid gray;
 }
 
 form {
     margin-left: 10px;
+    margin-bottom: 10px;
     border: 3px solid gray;
     padding: 4px;
     background-color:#d8f3dc;
@@ -26,7 +30,7 @@ form {
 footer {
     display: flex;
     justify-content: center;
-    margin: 10px;
+    margin-top: 10px;
     background-color:#65aa88;
     padding-top: 10px;
 }
@@ -55,9 +59,20 @@ ul {
 .btn {
     background-color: #f08080;
     border: 2px solid gray;
+    width: 100%;
+    margin-bottom: 3px;
 }
 
-.btn:hover{
+.favBtn{
+    background-color: #f08080;
+    border: 2px solid gray;
+    padding: 4px;
+    margin-top: 4px; 
+    border-radius: 5px;
+    color: white;
+}
+
+.btn:hover, .favBtn:hover{
     background-color: #f2c3c3;
     border: 2px solid gray;
 } 
@@ -76,4 +91,32 @@ a:hover{
     background-color: #f2c3c3;
     border: 2px solid gray;
     color: white;
+}
+
+.favorites-section{
+    border: 2px solid gray;
+    margin: 10px 0 10px 0;
+    padding-top: 10px;
+    background-color:#d8f3dc;
+}
+
+#favorites-title{
+    display: flex;
+    justify-content: center;
+}
+
+#fav-sub-title{
+    margin-left: 30px;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+    .card-food, .card-drink {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    form{
+        margin-right: 10px;
+    }
 }
