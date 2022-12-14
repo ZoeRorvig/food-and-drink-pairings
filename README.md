@@ -1,5 +1,4 @@
-# food-and-drink-pairings
-Website for food and drink pairings.
+# Food and Drink Pairings
 [Link to My Project](https://zoerorvig.github.io/food-and-drink-pairings/)
 
 ## Table of Contents
