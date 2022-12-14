@@ -22,5 +22,15 @@ Features Include:
 
 The following is a screenshot of the whole page:
 
-![screenshot](./assets/_C__Users_blkqu_bootcamp_challenges_projects_food-and-drink-pairings_index.html.png)
+![screenshot](./images/_C__Users_blkqu_bootcamp_challenges_projects_food-and-drink-pairings_index.html.png)
+
+The following is a another screenshot of the whole page:
+
+![screenshot](./images/pairing-favorites.png)
+
+The following gif is to show functionality of the webpage:
+
+![screenshot](./images/functionality-gif.gif)
+
+
 
