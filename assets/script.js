@@ -1,5 +1,4 @@
-// var foodUrl = "https://www.themealdb.com/api.php";
-// var drinkUrl = "https://www.thecocktaildb.com/api.php";
+
 var userInput = "";
 var foodName = "";
 var savedFood = [];
@@ -17,7 +16,6 @@ document.querySelector("#randomize-button").addEventListener("click", function (
             if (response.ok) {
                 response.json()
                     .then(function (data) {
-                        console.log(data);
                         var randomFood = data;
                         displayFoodItems(randomFood);
                         fetch(randomDrinkApi)
@@ -25,7 +23,6 @@ document.querySelector("#randomize-button").addEventListener("click", function (
                                 if (response.ok) {
                                     response.json()
                                         .then(function (data) {
-                                            console.log(data);
                                             var randomDrink = data;
                                             displayDrinkItems(randomDrink);
                                         });
@@ -67,8 +64,6 @@ var displayFoodItems = function (food) {
 
     var ingredients = getType(food.meals[0], "Ingredient");
     var measurements = getType(food.meals[0], "Measure");
-    console.log(ingredients);
-    console.log(measurements)
 
     for (var i = 0; i < ingredients.length; i++) {
         var li = document.createElement("li");
@@ -90,8 +85,6 @@ var displayDrinkItems = function (drink) {
     drinkCard.children[3].textContent = drink.drinks[0].strInstructions;
     var ingredients = getType(drink.drinks[0], "Ingredient");
     var measurements = getType(drink.drinks[0], "Measure");
-    console.log(ingredients);
-    console.log(measurements)
 
     for (var i = 0; i < ingredients.length; i++) {
         var li = document.createElement("li");
@@ -103,7 +96,6 @@ var displayDrinkItems = function (drink) {
 document.querySelector("#food-button").addEventListener("click", function () {
     document.querySelector(".food-ingredient").children[2].textContent = "";
     userInput = document.querySelector("#food-input").value.split(' ').join('_');
-    console.log(userInput);
     var foodUrl = "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + userInput;
 
 
@@ -112,7 +104,6 @@ document.querySelector("#food-button").addEventListener("click", function () {
             if (response.ok) {
                 response.json()
                     .then(function (data) {
-                        console.log(data);
                         if (data.meals == null){
                             document.querySelector(".food-ingredient").children[2].textContent = "Oops! Please try a different ingredient!";
                         } else{
@@ -137,7 +128,6 @@ document.querySelector("#food-button").addEventListener("click", function () {
 document.querySelector("#drink-button").addEventListener("click", function () {
     document.querySelector(".drink-ingredient").children[2].textContent = "";
     userInput = document.querySelector("#drink-input").value.split(' ').join('_');
-    console.log(userInput);
     var drinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + userInput;
 
 
@@ -146,7 +136,6 @@ document.querySelector("#drink-button").addEventListener("click", function () {
             if (response.ok) {
                 response.json()
                     .then(function (data) {
-                        console.log(data);
                         if (data.drinks == null){
                             document.querySelector(".drink-ingredient").children[2].textContent = "Oops! Please try a different ingredient!";
                         } else{
@@ -172,7 +161,6 @@ document.querySelector("#foodFav").addEventListener("click" , function () {
    var food = document.getElementById("foodCardTitle").textContent;
 
     savedFood.push(food);
-    console.log(savedFood);
    localStorage.setItem('favorite-food', JSON.stringify(savedFood));
     displayFavorites();
 
@@ -180,7 +168,6 @@ document.querySelector("#foodFav").addEventListener("click" , function () {
 
 document.querySelector("#drinkFav").addEventListener("click" , function () {
     var drink = document.getElementById("drinkCardTitle").textContent;
-    console.log(drink);
     savedDrink.push(drink);
     localStorage.setItem('favorite-drink', JSON.stringify(savedDrink));
     displayFavorites();
@@ -190,7 +177,6 @@ document.querySelector("#drinkFav").addEventListener("click" , function () {
 var displayFavorites = function () {
     document.getElementById("foodList").innerHTML = null;
     savedFood = JSON.parse(localStorage.getItem('favorite-food')) || [];
-  console.log(savedFood);
 
   for (i = 0; i < savedFood.length; i++){
 
@@ -201,7 +187,6 @@ var displayFavorites = function () {
 
   document.getElementById("drinkList").innerHTML = null;
     savedDrink = JSON.parse(localStorage.getItem('favorite-drink')) || [];
-  console.log(savedFood);
 
   for (i = 0; i < savedDrink.length; i++){
 
