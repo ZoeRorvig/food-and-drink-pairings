@@ -24,7 +24,7 @@ HTML, CSS, JavaScript
 
 The following is a screenshot of the whole page:
 
-![screenshot](./images/_C__Users_blkqu_bootcamp_challenges_projects_food-and-drink-pairings_index.html.png)
+![screenshot](./images/main-page.png)
 
 The following is a another screenshot of the whole page:
 
