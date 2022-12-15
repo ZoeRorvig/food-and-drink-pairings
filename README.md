@@ -20,6 +20,9 @@ Features Include:
 ## Technologies Used 
 HTML, CSS, JavaScript
 
+- DRINKS API | https://www.thecocktaildb.com/api.php
+- MEALS API | https://www.themealdb.com/api.php
+
 ## Visuals 
 
 The following is a screenshot of the whole page:
