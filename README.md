@@ -17,6 +17,9 @@ Features Include:
 -   Option to add/save favorites.
 -   Produces images of food and drink upon lookup.
 
+## Technologies Used 
+HTML, CSS, JavaScript
+
 ## Visuals 
 
 The following is a screenshot of the whole page:
